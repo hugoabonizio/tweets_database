@@ -1,5 +1,6 @@
 require 'twitter'
 require 'csv'
+require './tweet'
 
 class User
   attr_accessor :username
@@ -16,7 +17,7 @@ class User
   end
   
   def extract_tweets
-    @tweets = @client.user_timeline(username, count: 200).map { |t| t.text }
+    @tweets = @client.user_timeline(username, count: 200).map { |t| Tweet.new(t) }
     self
   end
   
@@ -24,7 +25,18 @@ class User
     unless @tweets.empty?
       ::CSV.open("csv/#{@type}/#{@username}.csv", "w") do |csv|
         @tweets.each do |tweet|
-          csv << [tweet]
+          csv << [
+            @username,
+            tweet.timestamp,
+            tweet.text,
+            tweet.retweets,
+            0.0,
+            0.0,
+            'Unknown',
+            'Unknown',
+            'Unknown',
+            'Unknown'
+          ]
         end
       end
     end
