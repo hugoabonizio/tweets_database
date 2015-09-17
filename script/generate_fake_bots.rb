@@ -20,7 +20,7 @@ end
 
 tweets = []
 
-N_PHRASES = 20
+N_PHRASES = 5
 
 phrases = (0..N_PHRASES).map do
 #   "#{random_phrase(4, 5)} \##{raffle(random_string(5, 4), 50)} #{rand(1000)} \##{raffle(random_string(5, 4), 50)}"
@@ -33,8 +33,9 @@ last = 0
   
   username = "_bot_#{N_PHRASES}_n_#{i + 1}"
   ::CSV.open("CSV/B_artificial/#{username}.csv", "w") do |csv|
-    10.times do
+    200.times do
       ago = rand(last..last + time_between)
+#       ago = last + time_between
       timestamp = ago.minutes.ago.strftime("%d/%m/%Y %H:%M:%S").to_s
       last = ago
       
