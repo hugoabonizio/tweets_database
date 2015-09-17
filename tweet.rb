@@ -5,7 +5,7 @@ class Tweet
     @retweets = tweet.retweeted_tweet? ? 0 : tweet.retweet_count
     @timestamp = tweet.created_at.strftime("%d/%m/%Y %H:%M:%S").to_s
   end
-  
+    
   private def filter_tweet(text)
     text.gsub("\n", ' ').gsub('"', '""')
   end

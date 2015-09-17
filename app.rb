@@ -21,5 +21,5 @@ users.each do |user|
   end
 end
 
-puts "Humanos: #{Dir["csv/H/*"].length}"
-puts "Bots: #{Dir["csv/B/*"].length}"
+puts "Humanos: #{Dir["CSV/H/*"].length}"
+puts "Bots: #{Dir["CSV/B/*"].length}"

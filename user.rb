@@ -23,7 +23,7 @@ class User
   
   def save!
     unless @tweets.empty?
-      ::CSV.open("csv/#{@type}/#{@username}.csv", "w") do |csv|
+      ::CSV.open("CSV/#{@type}/#{@username}.csv", "w") do |csv|
         @tweets.each do |tweet|
           csv << [
             @username,
