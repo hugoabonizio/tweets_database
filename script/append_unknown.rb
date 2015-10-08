@@ -1,14 +1,7 @@
-Dir.glob('CSV/H/*.csv') do |item|
+require 'facets'
+
+Dir.glob('CSV/B_artificial/*.csv') do |item|
   next if item == '.' or item == '..'
   
-  output = ''
-  
-  File.open(item, 'r+') do |f|
-    while line = f.gets.chomp
-      output << "#{line},Unknown\n"
-    end
-    
-  end
-  
-  File.open(item, 'w') { |f| f.puts output }
+  File.rewrite(item) { |str| str.gsub(",Unknown,Unknown,Unknown,Unknown", ",Unknown,Unknown,Unknown,Unknown,Unknown")}
 end
